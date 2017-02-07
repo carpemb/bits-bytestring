@@ -125,7 +125,7 @@ instance Bits B.ByteString where
   testBit x i = testBit (B.index x (B.length x - (i `div` 8) - 1)) (i `mod` 8)
   {-# INLINE testBit #-}
 
-  bit i = (bit $ mod i 8) `B.cons` (B.replicate (div i 8) (255 :: Word8))
+  bit i = (bit $ mod i 8) `B.cons` (B.replicate (div i 8) (0 :: Word8))
   {-# INLINE bit #-}
 
   popCount x = sum $ map popCount $ B.unpack x

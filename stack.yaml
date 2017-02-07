@@ -2,8 +2,10 @@ resolver: nightly-2016-06-03
 packages:
 - '.'
 - location:
-    git: git@github.com:ekmett/bits.git
-    commit: ff98de1305cd39f2e888135e33b08b3c1592ae53
+    git: https://github.com/ekmett/bits.git
+    commit: 415324c782b2a374d1b84503d18f8cca5678049b
 extra-deps: []
-flags: {}
+flags:
+  bits:
+    test-doctests: false
 extra-package-dbs: []
