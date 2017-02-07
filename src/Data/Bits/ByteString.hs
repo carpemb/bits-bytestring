@@ -128,5 +128,11 @@ instance Bits B.ByteString where
   bit i = (bit $ mod i 8) `B.cons` (B.replicate (div i 8) (255 :: Word8))
   {-# INLINE bit #-}
 
+  setBit x i
+    | B.length x >= B.length (bit i) = x .|. (paddingZeroes`B.append` bit i)
+    | otherwise = x
+    where paddingZeroes = B.replicate (B.length x - (B.length $ bit i)) (0 :: Word8)
+  {-# INLINE setBit #-}
+
   popCount x = sum $ map popCount $ B.unpack x
   {-# INLINE popCount #-}

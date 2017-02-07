@@ -58,6 +58,9 @@ prop_ConstantLengthRotate x i = (B.length x) == (B.length $ rotate x i)
 prop_IdentityRotate :: B.ByteString -> Int -> Bool
 prop_IdentityRotate x i = x == rotateR (rotateL x i) i
 
+prop_ConstantLengthSetBit :: B.ByteString -> Int -> Bool
+prop_ConstantLengthSetBit x i = (B.length x) == (B.length $ setBit x i)
+
 main :: IO ()
 main = hspec $ do
   describe "AND" $ do
@@ -89,3 +92,6 @@ main = hspec $ do
       it "Length should not change on RotateR" $ property prop_ConstantLengthRotateR
       it "Length should not change on Rotate" $ property prop_ConstantLengthRotate
       it "Identity" $ property prop_IdentityRotate
+  describe "SetBit" $ do
+    context "Should have the following properties:" $ do
+      it "Length should not change on SetBit" $ property prop_ConstantLengthSetBit
